@@ -58,7 +58,7 @@ export default class TemperatureCard extends Component {
                     {city}
                 </Button>
 
-                <Chip label={this.state.temperature} style={{marginLeft: '10px'}} variant="outlined" />
+                <Chip label={this.state.temperature ? this.state.temperature + ` C°` : ``} style={{marginLeft: '10px'}} variant="outlined" />
 
                 <Divider/>
             </div>

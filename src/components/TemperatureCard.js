@@ -27,14 +27,16 @@ export default class TemperatureCard extends Component {
     }
 
     getTemperature(e, cityId){
-        console.log(cityId);
+
         axios.get(this.state.config.backendUrl + 'weather/temperature', {
             params: {
                 city_id: cityId
             }
         })
             .then(response => {
-                console.log(response.data.weather_data.list[0].main);
+                this.setState({
+                    temperature: (response.data.weather_data.list[cityId].main.temp - 273.15).toFixed(2)
+                });
             })
             .catch(error => {
                 //TODO: show error

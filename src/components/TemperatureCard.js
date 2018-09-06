@@ -7,6 +7,7 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Chip from '@material-ui/core/Chip';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import Config from '../Config';
 
@@ -18,6 +19,9 @@ export default class TemperatureCard extends Component {
 
         this.state = {
             temperature: '',
+            progress: {
+                display: 'none'
+            },
             config: config
         };
 
@@ -28,6 +32,12 @@ export default class TemperatureCard extends Component {
 
     getTemperature(e, cityId){
 
+        this.setState({
+            progress: {
+                display: 'block'
+            }
+        });
+
         axios.get(this.state.config.backendUrl + 'weather/temperature', {
             params: {
                 city_id: cityId
@@ -35,7 +45,10 @@ export default class TemperatureCard extends Component {
         })
             .then(response => {
                 this.setState({
-                    temperature: (response.data.weather_data.list[cityId].main.temp - 273.15).toFixed(2)
+                    temperature: (response.data.weather_data.list[cityId].main.temp - 273.15).toFixed(2),
+                    progress: {
+                        display: 'none'
+                    }
                 });
             })
             .catch(error => {
@@ -56,7 +69,9 @@ export default class TemperatureCard extends Component {
                     onClick={(e, id) => this.getTemperature(e, cityId)}
                 >
                     {city}
+                    <CircularProgress size={20} style={this.state.progress}/>
                 </Button>
+
 
                 <Chip label={this.state.temperature ? this.state.temperature + ` C°` : ``} style={{marginLeft: '10px'}} variant="outlined" />
 

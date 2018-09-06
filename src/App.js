@@ -41,8 +41,8 @@ class App extends Component {
         if (this.state.cities) {
             return (
                 <div>
-                    <Paper style={{'margin': '30px', 'padding': '40px'}}>
-                        <Typography variant="headline" component="h3" style={{'textAlign': 'center'}}>
+                    <Paper style={{margin: '30px', padding: '40px'}}>
+                        <Typography variant="headline" component="h3" style={{textAlign: 'center'}}>
                             Weather Application
                         </Typography>
                         <div>
@@ -55,7 +55,7 @@ class App extends Component {
             );
         } else {
             return (
-                <div style={{'textAlign': 'center', 'marginTop': '20%'}}>
+                <div style={{textAlign: 'center', marginTop: '20%'}}>
                     <CircularProgress size={50} />
                 </div>
             );

@@ -6,6 +6,10 @@
 export default class Config
 {
     constructor() {
-        this._backendUrl = 'http://127.0.0.1:8080/';
+        this._backendUrl = 'http://weather.ceant.net/';
+    }
+
+    get backendUrl() {
+        return this._backendUrl;
     }
 }
